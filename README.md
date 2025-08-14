@@ -1,53 +1,75 @@
-# **Twitter Auto-Tweet Bot**
+<!-- Banner -->
+<p align="center">
+  <img src="banner.png" alt="Twitter Auto-Tweet Bot" width="100%">
+</p>
 
-An advanced **Python-based Twitter automation bot** that generates engaging tweets using **Google Gemini AI**, fetches **real-time trending topics**, and posts them automatically via the **Twitter API (Tweepy)**.
+<h1 align="center">🐦 Twitter Auto-Tweet Bot</h1>
+<p align="center">
+  <i>AI-powered social media automation for smarter, trend-driven tweets</i>
+</p>
 
-It includes:
-- **Trending hashtag detection** from a live source.
-- **AI-generated tweets** in different tones (tech, casual, sad) via Gemini AI.
-- **Scheduled posting** at optimal times.
-- **MySQL database integration** for tweet logging.
-- **Duplicate reply prevention** using cached classifications.
-
----
-
-## **Features**
-- 📈 **Trending Topic Fetching** → Uses live data from [xtrends.iamrohit.in](https://xtrends.iamrohit.in/india)
-- 🤖 **AI-Powered Tweet Generation** → Gemini AI with a custom “Tanya Arora” persona.
-- 🗄 **MySQL Integration** → Stores tweet text, type, timestamp, and posting status.
-- ⏰ **Scheduled & Conditional Posting** → Posts only during optimal engagement hours.
-- 🛡 **Topic Classification Cache** → Avoids re-calling AI for repeated topics.
-- 📝 **Flexible Tweet Types** → Tech, casual, or empathetic tone based on topic.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python" />
+  <img src="https://img.shields.io/badge/Tweepy-Library-orange?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Gemini-AI-green?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" />
+</p>
 
 ---
 
-## **Requirements**
-Install dependencies from `requirements.txt`:
-\`\`\`bash
+## 📌 Overview
+**Twitter Auto-Tweet Bot** is a Python automation tool that:
+- 📈 Fetches **real-time trending topics** in India.
+- 🤖 Generates **engaging tweets** via Google Gemini AI.
+- 🗄 Logs tweets in **MySQL** to prevent duplicates.
+- ⏰ Posts **automatically during peak engagement hours**.
+
+Designed for **personal branding, marketing, and tech creators**.
+
+---
+
+## ✨ Features
+- **Live Trending Hashtags** → Scrapes from `xtrends.iamrohit.in`.
+- **AI-Powered Tweet Generation** → Tanya Arora persona for human-like tweets.
+- **Scheduled Posting** → Avoids spamming, posts only at best times.
+- **Duplicate Prevention** → Uses classification cache to skip reprocessing.
+- **Multi-Tone Output** → Tech, casual, or empathetic based on topic.
+
+---
+
+## 📂 File Structure
+```plaintext
+twitter-auto-tweet-bot/
+│
+├── main.py              # Main bot loop
+├── database.py          # MySQL setup & tweet saving
+├── reply.py             # AI tweet generation
+├── trend.py             # Trending hashtag scraper
+├── twitter_client.py    # Twitter API client setup
+├── requirements.txt     # Dependencies
+├── token.env            # API keys (not in repo)
+├── banner.png           # Project banner (for README)
+└── README.md            # Project documentation
+```
+
+---
+
+## 🛠 Installation
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/USERNAME/twitter-auto-tweet-bot.git
+cd twitter-auto-tweet-bot
+```
+
+### 2️⃣ Install Dependencies
+```bash
 pip install -r requirements.txt
-\`\`\`
-
-**requirements.txt**
-\`\`\`
-tweepy
-genai
-\`\`\`
-
-Also required:
-- `beautifulsoup4` for trend scraping.
-- `mysql-connector-python` for DB connection.
-
-Install:
-\`\`\`bash
 pip install beautifulsoup4 mysql-connector-python
-\`\`\`
+```
 
----
-
-## **Environment Variables (`token.env`)**
-Create a `token.env` file in the root folder:
-
-\`\`\`
+### 3️⃣ Set Environment Variables
+Create `token.env`:
+```
 api_key=YOUR_TWITTER_API_KEY
 api_secret=YOUR_TWITTER_API_SECRET
 access_token=YOUR_ACCESS_TOKEN
@@ -55,64 +77,44 @@ access_token_secret=YOUR_ACCESS_TOKEN_SECRET
 bearer_token=YOUR_BEARER_TOKEN
 USER_ID=YOUR_TWITTER_USER_ID
 gemini_api_key=YOUR_GEMINI_API_KEY
-\`\`\`
+```
 
 ---
 
-## **Database Setup**
-1. Make sure MySQL server is running.
-2. Edit DB credentials in `database.py`:
-\`\`\`python
+## 🗄 Database Setup
+1. Start MySQL server.
+2. Update credentials in `database.py`:
+```python
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
     password="YOUR_PASSWORD",
     database="twitter"
 )
-\`\`\`
-3. Run the script to create DB & table automatically:
-\`\`\`bash
+```
+3. Run:
+```bash
 python database.py
-\`\`\`
+```
 
 ---
 
-## **How It Works**
-1. **Trend Fetching** → `trend.py` scrapes trending hashtags.
-2. **AI Tweet Generation** → `reply.py` classifies the topic and generates a tweet using Gemini AI.
-3. **Posting** → `main.py` posts the tweet via Twitter API (Tweepy).
-4. **Logging** → Tweet details are saved into MySQL.
-
----
-
-## **Run the Bot**
-\`\`\`bash
+## 🚀 Usage
+Run the bot:
+```bash
 python main.py
-\`\`\`
+```
 The bot will:
-- Check if it’s a trending posting time.
-- Fetch a random trending topic.
-- Generate a tweet based on Tanya’s persona.
-- Post the tweet and log it in the database.
-- Sleep for 1 hour before next cycle.
+1. Fetch a trending topic.
+2. Generate an AI-powered tweet.
+3. Post on Twitter.
+4. Save details to MySQL.
+5. Repeat hourly.
 
 ---
 
-## **File Structure**
-\`\`\`
-├── main.py             # Main bot loop
-├── database.py         # MySQL setup & tweet saving
-├── reply.py            # AI reply generation with persona
-├── trend.py            # Trending hashtag scraper
-├── twitter_client.py   # Twitter API client setup
-├── requirements.txt    # Python dependencies
-├── token.env           # API keys (not in repo)
-\`\`\`
-
----
-
-## **Example Output**
-\`\`\`
+## 📸 Example Output
+```plaintext
 [+] Getting Trending Topics...
 1. #AIRevolution (45K Tweets) URL: https://twitter.com/search?q=%23AIRevolution
 Generating Reply... Topic: AI Revolution in tech world...
@@ -120,9 +122,15 @@ Tweet: The AI wave isn’t coming—it’s already here. Adapt or get left behin
 ✅ Scheduled Tweet sent.
 [+] Tweet saved in Database.
 [+] Bot Cycle Complete. Sleeping for 1 hour...
-\`\`\`
+```
 
 ---
 
-## **Disclaimer**
-This project is for **educational purposes**. Automating tweets can violate Twitter’s terms of service — use responsibly.
+## ⚠ Disclaimer
+This project is for **educational purposes**. Automating Twitter posts can violate Twitter’s terms of service — use responsibly.
+
+---
+
+<p align="center">
+  Made with ❤️ by <b>Rishabh</b>
+</p>
